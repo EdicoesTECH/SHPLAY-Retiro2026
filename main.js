@@ -1,7 +1,7 @@
 // ============================================================
 //  🚀  PONTO DE ENTRADA — conecta Bot + UI
 // ============================================================
-import { CONFIG }  from './config.js'
+import { CONFIG } from './config.js'
 import { Bot, BotState } from './bot.js'
 import {
   renderMessage,
@@ -12,9 +12,9 @@ import {
 
 // ── Elementos do DOM ──────────────────────────────────────
 const messagesContainer = document.getElementById('messages-container')
-const inputArea         = document.getElementById('input-area')
-const headerName        = document.getElementById('event-name-header')
-const footerText        = document.getElementById('footer-text')
+const inputArea = document.getElementById('input-area')
+const headerName = document.getElementById('event-name-header')
+const footerText = document.getElementById('footer-text')
 
 // Atualiza o nome do evento no header
 headerName.textContent = CONFIG.eventName
