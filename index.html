@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia do Retiro — Do Deserto à Ressurreição</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-top"></div>
+    <div class="ambient ambient-bottom"></div>
+
+    <header class="topbar">
+      <div class="brand-block">
+        <span class="eyebrow">RETIRO QUARESMAL ONLINE</span>
+        <span class="brand-title" id="event-name-header">Do Deserto à Ressurreição</span>
+      </div>
+      <div class="topbar-meta">
+        <span class="meta-pill">27 e 28 de Março</span>
+        <span class="meta-pill meta-pill-outline">Ao vivo</span>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <div class="hero-copy">
+        <span class="hero-tag">Crie seu crachá oficial</span>
+        <h1>O teu caminho para a cura começa aqui.</h1>
+        <p class="hero-text">
+          Converse com o guia do retiro, envie sua foto e gere uma arte vertical pronta para compartilhar no celular.
+        </p>
+
+        <div class="hero-points">
+          <div class="point-item">
+            <span class="point-icon">✦</span>
+            <span>Visual inspirado na landing page do retiro</span>
+          </div>
+          <div class="point-item">
+            <span class="point-icon">✦</span>
+            <span>Imagem final em 1080 × 1920 pixels</span>
+          </div>
+          <div class="point-item">
+            <span class="point-icon">✦</span>
+            <span>Pronta para story, status e divulgação</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-label">Sua travessia</div>
+        <div class="hero-card-title">Guia interativo do retiro</div>
+        <div class="hero-card-text">Digite seu nome, envie sua foto e baixe sua arte em segundos.</div>
+      </div>
+    </section>
+
+    <main class="workspace">
+      <section class="chat-card">
+        <div class="chat-card-header">
+          <div class="assistant-badge">✦</div>
+          <div>
+            <div class="assistant-name">Guia do Retiro</div>
+            <div class="assistant-status"><span class="status-dot"></span> Online agora</div>
+          </div>
+        </div>
+
+        <div class="messages-container" id="messages-container"></div>
+        <div class="input-area" id="input-area"></div>
+      </section>
+
+      <section class="preview-card" id="preview-panel">
+        <div class="preview-head">
+          <span class="preview-kicker">Prévia</span>
+          <h2>Arte vertical do participante</h2>
+          <p>Formato pensado para celular: 1080 × 1920 px</p>
+        </div>
+
+        <div class="preview-stage">
+          <div class="preview-placeholder" id="preview-placeholder">
+            <div class="phone-frame">
+              <div class="phone-inner placeholder-inner">
+                <span class="placeholder-mini">Do Deserto à Ressurreição</span>
+                <strong>Seu crachá vai aparecer aqui</strong>
+                <p>Assim que você conversar com o guia e enviar a foto, a arte será gerada nesta área.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-wrapper" id="canvas-wrapper" style="display:none">
+            <div class="phone-frame">
+              <canvas id="badge-canvas"></canvas>
+            </div>
+            <div class="canvas-actions">
+              <button class="btn-primary" id="btn-download">Baixar arte</button>
+              <button class="btn-secondary" id="btn-share">Compartilhar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note" id="footer-text">Ordo Amoris · Retiro Quaresmal</footer>
+  </div>
+
+  <input type="file" id="file-input" accept="image/*" style="display:none" />
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
