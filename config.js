@@ -1,37 +1,36 @@
+// ============================================================
+//  ⚙️  CONFIGURAÇÃO — Retiro Quaresmal "Do Deserto à Ressurreição"
+// ============================================================
 export const CONFIG = {
   eventName: 'Do Deserto à Ressurreição',
   eventSubtitle: 'Retiro Quaresmal Online · 27 e 28 de Março',
-  eventDate: '27 e 28 de Março',
-  ctaLabel: 'Começar minha travessia',
+  eventColor: '#7a3fa8',
+  eventColorLight: '#d4a843',
+  eventColorGold: '#f0cc70',
+  eventColorAmber: '#e8922a',
 
   messages: {
     welcome:
-      'Bem-vindo(a)! ✦\n\nEste é o guia do retiro *Do Deserto à Ressurreição*. Vamos criar sua arte oficial em formato vertical para compartilhar no celular.\n\nPara começar, me diga: **qual é o seu nome?**',
+      'Olá! ✨\n\nVou te ajudar a criar seu crachá para o retiro *Do Deserto à Ressurreição*.\n\nDepois você pode postar nas suas redes e marcar **@shalom.play**.\n\nMe diga: **qual é o seu nome?**',
 
     askPhoto:
-      '*{name}*, agora envie uma **foto sua**.\n\nDe preferência, escolha uma imagem nítida, com boa iluminação e com o rosto bem visível. Assim o resultado fica mais bonito.\n\nClique no botão abaixo para selecionar a foto:',
+      '*{name}*, agora envie uma **foto sua** para gerar seu crachá.\n\nDepois é só baixar, postar e usar a hashtag **#EuToNoRetiro**.\n\nClique abaixo para escolher a foto:',
 
-    processing: 'Gerando sua arte... só um instante ✨',
+    processing:
+      '✨ Gerando seu crachá...',
 
     done:
-      'Pronto, *{name}*!\n\nSua arte já está pronta para baixar e compartilhar.',
+      'Pronto, *{name}*! 🙏\n\nSeu crachá já está pronto.\n\nAgora é só baixar, postar nas redes, marcar **@shalom.play** e usar **#EuToNoRetiro**.',
 
     errorNoFace:
-      'Não consegui processar essa foto da forma esperada. Tente novamente com uma imagem mais nítida e bem enquadrada.',
+      'Não consegui processar essa foto.\n\nTente novamente com uma imagem mais nítida e com o rosto bem visível.',
 
-    restart: 'Vamos começar de novo. Qual é o seu nome?',
+    restart:
+      'Vamos criar outro crachá? Me diga seu nome.',
   },
 
   badge: {
     width: 1080,
     height: 1920,
-    safeX: 74,
-    safeY: 74,
-    safeW: 932,
-    photoX: 84,
-    photoY: 430,
-    photoW: 912,
-    photoH: 990,
-    photoRadius: 40,
   },
 }
