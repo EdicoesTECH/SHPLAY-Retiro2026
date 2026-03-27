@@ -137,34 +137,23 @@ async function generateBadge(photoDataUrl) {
   ctx.closePath()
   ctx.clip()
 
-  // Cover fit dentro do círculo
-  const boxSize = radius * 2
-  const imageAspect = photo.width / photo.height
-  const targetAspect = 1
+  const diameter = radius * 2
 
-  let sx = 0
-  let sy = 0
-  let sw = photo.width
-  let sh = photo.height
+  // Escala para preencher o círculo inteiro
+  const scale = Math.max(diameter / photo.width, diameter / photo.height)
+  const drawWidth = photo.width * scale
+  const drawHeight = photo.height * scale
 
-  if (imageAspect > targetAspect) {
-    sh = photo.height
-    sw = sh * targetAspect
-    sx = (photo.width - sw) / 2
-  } else {
-    sw = photo.width
-    sh = sw / targetAspect
-    sy = (photo.height - sh) / 2
-  }
+  // Centraliza horizontalmente
+  const dx = centerX - drawWidth / 2
 
-  ctx.drawImage(
-    photo,
-    sx, sy, sw, sh,
-    centerX - radius,
-    centerY - radius,
-    boxSize,
-    boxSize
-  )
+  // PRIORIDADE PARA O TOPO:
+  // sobe menos a imagem, preservando cabeça e rosto
+  // ajuste fino: quanto menor esse valor, mais mostra a parte de cima
+  const topOffset = 0.12
+  const dy = centerY - radius - ((drawHeight - diameter) * topOffset)
+
+  ctx.drawImage(photo, dx, dy, drawWidth, drawHeight)
 
   ctx.restore()
 
