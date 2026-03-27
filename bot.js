@@ -119,52 +119,30 @@ async function generateBadge(photoDataUrl) {
 
   const ctx = canvas.getContext('2d')
 
-  // 1) desenha o fundo-base oficial
+  // Fundo-base oficial
   const baseImage = await loadImage('./badge-base.png')
   ctx.drawImage(baseImage, 0, 0, width, height)
 
-  // 2) carrega a foto do participante
+  // Foto do participante
   const photo = await loadImage(photoDataUrl)
 
-  // 3) área do círculo da arte
-  const centerX = 540
-  const centerY = 912
-  const radius = 444
-  const diameter = radius * 2
+  // Área onde a foto vai ficar
+  // Ajuste estes valores se quiser subir/descer ou aumentar/diminuir
+  const boxWidth = 520
+  const boxHeight = 520
+  const boxX = (width - boxWidth) / 2
+  const boxY = 590
 
-  // cria uma camada circular
-  ctx.save()
-  ctx.beginPath()
-  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
-  ctx.closePath()
-  ctx.clip()
+  // Faz a foto caber inteira dentro da área, sem cortar
+  const scale = Math.min(boxWidth / photo.width, boxHeight / photo.height)
+  const drawWidth = photo.width * scale
+  const drawHeight = photo.height * scale
 
-  // =========================================================
-  // FUNDO DA FOTO: cover + blur
-  // =========================================================
-  const bgScale = Math.max(diameter / photo.width, diameter / photo.height)
-  const bgW = photo.width * bgScale
-  const bgH = photo.height * bgScale
-  const bgX = centerX - bgW / 2
-  const bgY = centerY - bgH / 2
+  const drawX = boxX + (boxWidth - drawWidth) / 2
+  const drawY = boxY + (boxHeight - drawHeight) / 2
 
-  ctx.save()
-  ctx.filter = 'blur(28px) brightness(0.75)'
-  ctx.drawImage(photo, bgX, bgY, bgW, bgH)
-  ctx.restore()
-
-  // =========================================================
-  // FOTO PRINCIPAL: contain, sem cortar o rosto
-  // =========================================================
-  const fitScale = Math.min(diameter / photo.width, diameter / photo.height) 
-  const fitW = photo.width * fitScale
-  const fitH = photo.height * fitScale
-  const fitX = centerX - fitW / 2
-  const fitY = centerY - fitH / 2
-
-  ctx.drawImage(photo, fitX, fitY, fitW, fitH)
-
-  ctx.restore()
+  // desenha a foto normal
+  ctx.drawImage(photo, drawX, drawY, drawWidth, drawHeight)
 
   return canvas.toDataURL('image/png')
 }
