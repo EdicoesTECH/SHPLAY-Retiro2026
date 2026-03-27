@@ -119,16 +119,20 @@ async function generateBadge(photoDataUrl) {
 
   const ctx = canvas.getContext('2d')
 
+  // Fundo-base oficial
   const baseImage = await loadImage('./badge-base.png')
   ctx.drawImage(baseImage, 0, 0, width, height)
 
+  // Foto do participante
   const photo = await loadImage(photoDataUrl)
 
-  const centerX = width / 2
-  const centerY = 900
+  // AJUSTE DO CÍRCULO DA FOTO
+  // Aqui está o principal: aumentar o raio para ocupar o círculo interno do layout
+  const centerX = 540
+  const centerY = 800
+  const radius = 305
 
-  // círculo visível da foto
-  const radius = 250
+  const diameter = radius * 2
 
   ctx.save()
   ctx.beginPath()
@@ -136,20 +140,16 @@ async function generateBadge(photoDataUrl) {
   ctx.closePath()
   ctx.clip()
 
-  const diameter = radius * 2
-
-  // aumenta levemente a foto para preencher melhor o círculo
-  const zoom = 1.26
-  const scale = Math.max(diameter / photo.width, diameter / photo.height) * zoom
-
+  // COVER para preencher todo o círculo
+  const scale = Math.max(diameter / photo.width, diameter / photo.height) * 1.02
   const drawWidth = photo.width * scale
   const drawHeight = photo.height * scale
 
   const dx = centerX - drawWidth / 2
 
-  // prioriza um pouco a parte de cima para não cortar a cabeça
-  const topOffset = 0.08
-  const dy = centerY - radius - ((drawHeight - diameter) * topOffset)
+  // Pequena prioridade para o topo, sem exagerar
+  const extraY = drawHeight - diameter
+  const dy = centerY - radius - (extraY * 0.18)
 
   ctx.drawImage(photo, dx, dy, drawWidth, drawHeight)
 
