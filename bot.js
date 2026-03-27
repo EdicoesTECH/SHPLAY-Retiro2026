@@ -148,7 +148,7 @@ async function generateBadge(photoDataUrl) {
   const dx = centerX - drawWidth / 2
 
   // prioriza um pouco a parte de cima para não cortar a cabeça
-  const topOffset = 0.10
+  const topOffset = 1.18
   const dy = centerY - radius - ((drawHeight - diameter) * topOffset)
 
   ctx.drawImage(photo, dx, dy, drawWidth, drawHeight)
