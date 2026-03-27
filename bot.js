@@ -139,7 +139,7 @@ async function generateBadge(photoDataUrl) {
   const diameter = radius * 2
 
   // aumenta levemente a foto para preencher melhor o círculo
-  const zoom = 1.18
+  const zoom = 1.26
   const scale = Math.max(diameter / photo.width, diameter / photo.height) * zoom
 
   const drawWidth = photo.width * scale
@@ -148,7 +148,7 @@ async function generateBadge(photoDataUrl) {
   const dx = centerX - drawWidth / 2
 
   // prioriza um pouco a parte de cima para não cortar a cabeça
-  const topOffset = 1.18
+  const topOffset = 0.08
   const dy = centerY - radius - ((drawHeight - diameter) * topOffset)
 
   ctx.drawImage(photo, dx, dy, drawWidth, drawHeight)
