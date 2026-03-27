@@ -119,39 +119,50 @@ async function generateBadge(photoDataUrl) {
 
   const ctx = canvas.getContext('2d')
 
-  // Fundo-base oficial
+  // 1) desenha o fundo-base oficial
   const baseImage = await loadImage('./badge-base.png')
   ctx.drawImage(baseImage, 0, 0, width, height)
 
-  // Foto do participante
+  // 2) carrega a foto do participante
   const photo = await loadImage(photoDataUrl)
 
-  // AJUSTE DO CÍRCULO DA FOTO
-  // Aqui está o principal: aumentar o raio para ocupar o círculo interno do layout
+  // 3) área do círculo da arte
   const centerX = 540
-  const centerY = 800
-  const radius = 305
-
+  const centerY = 912
+  const radius = 444
   const diameter = radius * 2
 
+  // cria uma camada circular
   ctx.save()
   ctx.beginPath()
   ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
   ctx.closePath()
   ctx.clip()
 
-  // COVER para preencher todo o círculo
-  const scale = Math.max(diameter / photo.width, diameter / photo.height) * 1.02
-  const drawWidth = photo.width * scale
-  const drawHeight = photo.height * scale
+  // =========================================================
+  // FUNDO DA FOTO: cover + blur
+  // =========================================================
+  const bgScale = Math.max(diameter / photo.width, diameter / photo.height)
+  const bgW = photo.width * bgScale
+  const bgH = photo.height * bgScale
+  const bgX = centerX - bgW / 2
+  const bgY = centerY - bgH / 2
 
-  const dx = centerX - drawWidth / 2
+  ctx.save()
+  ctx.filter = 'blur(28px) brightness(0.75)'
+  ctx.drawImage(photo, bgX, bgY, bgW, bgH)
+  ctx.restore()
 
-  // Pequena prioridade para o topo, sem exagerar
-  const extraY = drawHeight - diameter
-  const dy = centerY - radius - (extraY * 0.18)
+  // =========================================================
+  // FOTO PRINCIPAL: contain, sem cortar o rosto
+  // =========================================================
+  const fitScale = Math.min(diameter / photo.width, diameter / photo.height) * 092
+  const fitW = photo.width * fitScale
+  const fitH = photo.height * fitScale
+  const fitX = centerX - fitW / 2
+  const fitY = centerY - fitH / 2
 
-  ctx.drawImage(photo, dx, dy, drawWidth, drawHeight)
+  ctx.drawImage(photo, fitX, fitY, fitW, fitH)
 
   ctx.restore()
 
