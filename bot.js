@@ -150,7 +150,7 @@ async function generateBadge(photoDataUrl) {
   // PRIORIDADE PARA O TOPO:
   // sobe menos a imagem, preservando cabeça e rosto
   // ajuste fino: quanto menor esse valor, mais mostra a parte de cima
-  const topOffset = 0.08
+  const topOffset = 0.12
   const dy = centerY - radius - ((drawHeight - diameter) * topOffset)
 
   ctx.drawImage(photo, dx, dy, drawWidth, drawHeight)
