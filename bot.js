@@ -156,7 +156,7 @@ async function generateBadge(photoDataUrl) {
   // =========================================================
   // FOTO PRINCIPAL: contain, sem cortar o rosto
   // =========================================================
-  const fitScale = Math.min(diameter / photo.width, diameter / photo.height) * 1.00
+  const fitScale = Math.min(diameter / photo.width, diameter / photo.height) 
   const fitW = photo.width * fitScale
   const fitH = photo.height * fitScale
   const fitX = centerX - fitW / 2
